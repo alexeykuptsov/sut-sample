@@ -1,0 +1,20 @@
+﻿@model HomeIndexModel
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-left">
+    <h1 class="display-4">My To-Do list</h1>
+    @using (Html.BeginForm("AddItem", "Home", FormMethod.Post))
+    {
+        @Html.TextBoxFor(model => model.NewItem, new {@class = "form-control"})
+        @Html.ValidationMessageFor(model => model.NewItem)
+        <button type="submit" class="btn btn-primary">Add</button>
+    }
+    <div class="list-group">
+        @foreach (var item in Model.Items)
+        {
+            <a href="#" class="list-group-item list-group-item-action">@item.Text</a>
+        }
+    </div>
+</div>
